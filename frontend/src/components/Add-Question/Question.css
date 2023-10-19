@@ -1,0 +1,145 @@
+.add-question {
+    display: flex;
+    width: 100%;
+    background-color: rgba(238, 238, 238, 0.568);
+    height: 100vh;
+    justify-content: center;
+}
+
+.add-question-container {
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 800px;
+    background-color: rgba(238, 238, 238, 0.568);
+
+}
+
+.head-title {
+    display: flex;
+    width: 100%;
+}
+
+.head-title>h1 {
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.question-container {
+    display: flex;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(66, 42, 42, 0.19);
+}
+
+.question-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.question-option {
+    /* display: flex; */
+    flex-direction: column;
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    font-size: 0.9rem;
+}
+
+.title>h3 {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+}
+
+.title>small {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.title>input {
+    margin: 4px 0px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    outline: none;
+}
+
+.tags-input-container {
+    padding: 6px;
+    border: 1px solid rgba(102, 20, 20, 0.2);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* .react-tagsinput {
+    background: gray;
+    border-radius: 2px;
+    border: 1px solid #49a9ae;
+    color: #215e84;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px;
+} */
+
+/* .TagsInput__react-tagsinput. */
+.react-tag-input-component .TagsInput {
+    background-color: #144263;
+}
+
+
+
+.title>input::placeholder {
+    color: #ddd;
+
+}
+
+/* .title>input::placeHolder {
+    color: #ffffff;
+} */
+
+
+.title>input:focus {
+    border: 1px solid #0054ff;
+    box-shadow: 0 4px 8px 0 #0055ff23, 0 6px 20px 0 #0055ff11;
+}
+
+.quill {
+    height: 100%;
+}
+
+.react-quill {
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.ql-editor {
+    height: 200px;
+}
+
+.button {
+
+    max-width: max-content;
+    margin: 10px 0px 0px 310px;
+
+}
+
+button:hover {
+    background-color: #053086;
+}
+
+/* ::-webkit-input-placeHolder {
+    background-color: red;
+    width: 100px;
+} */
