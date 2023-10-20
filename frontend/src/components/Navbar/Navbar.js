@@ -18,7 +18,7 @@ const Navbar = () => {
         <ul>
           <li>
             <Link to="/">
-              <MdHomeFilled color="white" size={45} />
+              <MdHomeFilled className={styles.homeSVG} color="white" size={45} />
             </Link>
           </li>
 
@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className={styles.navlogin}>
         <Link to="/login">
 
-          <BiLogIn color="white" size={45} />
+          <BiLogIn color="white" size={45} className={styles.loginSVG} />
         </Link>
       </div>
 
