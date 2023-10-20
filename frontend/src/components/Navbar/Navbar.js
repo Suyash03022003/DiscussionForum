@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from './navbar.module.css';
 import { MdSearch, MdHomeFilled } from "react-icons/md";
-import { BiLogIn} from "react-icons/bi";
+import { BiLogIn } from "react-icons/bi";
 
 const Navbar = () => {
 
@@ -18,23 +18,26 @@ const Navbar = () => {
         <ul>
           <li>
             <Link to="/">
-              <MdHomeFilled color="white" size={45}/>
+              <MdHomeFilled color="white" size={45} />
             </Link>
           </li>
 
-          <li>
+          <li className={styles.search}>
             <div className={styles.headerSearchContainer}>
-              <MdSearch color="grey"/>
-              <input type='text'  placeholder='search...' />
+              <MdSearch className={styles.searchSVG} color="grey" />
+              <input type='text' placeholder='search...' />
             </div>
           </li>
-          
+
         </ul>
       </div>
 
 
       <div className={styles.navlogin}>
-        <BiLogIn color="white" size={45} />
+        <Link to="/login">
+
+          <BiLogIn color="white" size={45} />
+        </Link>
       </div>
 
     </header>

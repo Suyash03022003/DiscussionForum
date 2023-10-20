@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const commentDB = require("../models/Comment");
+const commentDB = require("../models/comments");
 
 router.post("/:id", async (req, res) => {
   try {
