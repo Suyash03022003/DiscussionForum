@@ -9,8 +9,8 @@ const Navbar = () => {
     <header className={styles.mainNav}>
       <div className={styles.navlogo}>
         <h2>
-          <span>D</span>iscussion
-          <span>F</span>orum
+          <span>D</span>iscussion 
+          <span> F</span>orum
         </h2>
       </div>
 

@@ -23,13 +23,11 @@
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
-  background: -webkit-linear-gradient(#fa0101, rgb(1, 0, 7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: white;
 }
 
 .navlogo h2 span {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .navlinks {

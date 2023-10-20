@@ -52,13 +52,13 @@ export default function Home() {
             {ques.map((que, index) => (
               <div className={styles.question}>
                 <div className={styles.questionSidebar}>
-                  <div className={styles.views}>
-                    <p className={styles.count}>{que.views}</p>
-                    <p className={styles.text}>Views</p>
-                  </div>
                   <div className={styles.likes}>
                     <p className={styles.count}>{que.likes}</p>
                     <p className={styles.text}>Likes</p>
+                  </div>
+                  <div className={styles.views}>
+                    <p className={styles.count}>{que.views}</p>
+                    <p className={styles.text}>Views</p>
                   </div>
                   <div className={styles.answers}>
                     <p className={styles.count}>{que.answers}</p>
