@@ -86,16 +86,27 @@
     border-radius: 5px;
 }
 
+.questionLink {
+    text-decoration: none;
+}
+
 .mainQuestion {
     color: dodgerblue;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .questionUploader {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
 }
 
 .userProfile {
@@ -103,6 +114,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.options img {
+    width: 30px;
 }
 
 .userProfile img {

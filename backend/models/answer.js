@@ -11,10 +11,17 @@ const answerSchema = new mongoose.Schema(
             type: Date,
             default: Date.now(),
         },
-        user: Object,
-        comment_id: {
+        user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "comments",
+            ref: "users",
+        },
+        upvotes: {
+            type: Number,
+            default: 0,
+        },
+        downvotes: {
+            type: Number,
+            default: 0,
         },
     },
 );

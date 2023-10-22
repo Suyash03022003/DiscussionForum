@@ -1,0 +1,74 @@
+.main {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.centerDiv {
+    width: 70%;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.info h4 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.info button {
+    border: 0;
+    border-radius: 10px;
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.quesInfo {
+    color: #757575;
+}
+
+.bold {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.questionUploader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 0;
+}
+
+.quesBody {
+    margin-bottom: 20px;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.userProfile {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options img {
+    width: 30px;
+}
+
+.userProfile img {
+    width: 40px;
+}

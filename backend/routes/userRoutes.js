@@ -70,7 +70,7 @@ router.put('/:id', async (request, response) => {
 
         const user = await User.findByIdAndUpdate(id, request.body);
 
-        if(!result) {
+        if(!user) {
             return response.status(404).json({ message: 'User not found' });
         }
 

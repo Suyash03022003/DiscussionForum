@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './home.module.css';
 import AccountLogo from '../../assets/account.png';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import LikeOption from '../../assets/like.png'
 
 export default function Home() {
   const [ques, setQues] = useState([]);
@@ -20,6 +22,25 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+  const incrementLikes = (id, title, tags, currentLikes) => {
+    const updatedLikes = currentLikes + 1;
+    const object = {
+      title: title,
+      tags: tags,
+      likes: updatedLikes
+    };
+    axios.put(`http://localhost:5555/ques/${id}`, object)
+      .then((response) => {
+        setQues((prevQues) =>
+          prevQues.map((que) =>
+            que._id === id ? { ...que, likes: updatedLikes } : que
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   const getUserName = (userId) => {
     axios
       .get(`http://localhost:5555/user/${userId}`)
@@ -50,7 +71,7 @@ export default function Home() {
         ) : (
           <div className={styles.questions}>
             {ques.map((que, index) => (
-              <div className={styles.question}>
+              <div className={styles.question} key={que._id}>
                 <div className={styles.questionSidebar}>
                   <div className={styles.likes}>
                     <p className={styles.count}>{que.likes}</p>
@@ -67,21 +88,26 @@ export default function Home() {
                 </div>
                 <div className={styles.questionBody}>
                   <div className={styles.questionBodyDescription}>
-                    <p className={styles.mainQuestion}>{que.title}</p>
+                    <Link className={styles.questionLink} to={`/question/${que._id}`}><p className={styles.mainQuestion}>{que.title}</p></Link>
                     <p className={styles.questionDesc}>{que.body}</p>
                     <div className={styles.tags}>
                       {que.tags.map((tag, index) => (
-                        <p className={styles.tag}>{tag}</p>
+                        <p key={index} className={styles.tag}>{tag}</p>
                       ))}
                     </div>
                   </div>
                   <div className={styles.questionUploader}>
-                    <div className={styles.timeStamp}>
-                      <p>{calcDate(que.created_on)}</p>
+                    <div className={styles.options}>
+                      <img src={LikeOption} alt="likeIcon" onClick={() => incrementLikes(que._id, que.title, que.tags, que.likes)} />
                     </div>
-                    <div className={styles.userProfile}>
-                      <img src={AccountLogo} alt="accountIcon" />
-                      <p className={styles.userName}>{getUserName(que.user)}</p>
+                    <div className={styles.userDetails}>
+                      <div className={styles.timeStamp}>
+                        <p>{calcDate(que.created_on)}</p>
+                      </div>
+                      <div className={styles.userProfile}>
+                        <img src={AccountLogo} alt="accountIcon" />
+                        <p className={styles.userName}>{getUserName(que.user)}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
