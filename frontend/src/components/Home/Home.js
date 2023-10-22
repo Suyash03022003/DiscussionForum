@@ -59,6 +59,12 @@ export default function Home() {
   }
   return (
     <div className={styles.main}>
+      {/* Filter (left div) */}
+      <div className={styles.filter}>
+        jhvbrvsjsd
+      </div>
+
+      {/* Questions (right div) */}
       <div className={styles.centerDiv}>
         <div className={styles.info}>
           <h4>All Questions</h4>
