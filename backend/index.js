@@ -3,6 +3,7 @@ import { PORT, mongodbURL } from './config.js'
 import mongoose from 'mongoose';
 import quesRoutes from './routes/QuesRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import answerRoutes from './routes/answerRoutes.js';
 import cors from "cors";
 
 const app = express();
@@ -27,6 +28,8 @@ app.get('/', (request, response) => {
 app.use('/ques', quesRoutes);
 
 app.use('/user', userRoutes);
+
+app.use('/answer', answerRoutes);
 
 mongoose
     .connect(mongodbURL)

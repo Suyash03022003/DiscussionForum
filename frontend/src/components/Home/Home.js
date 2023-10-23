@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import LikeOption from '../../assets/like.png'
 import Sidebar from '../Sidebar.js';
 
-
 export default function Home() {
   const [ques, setQues] = useState([]);
   const [users, setUsers] = useState({});
   const [loading, setLoading] = useState(false);
+
+  // Use useEffect to fetch questions once when the component mounts
   useEffect(() => {
     setLoading(true);
     axios
@@ -24,6 +25,27 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    // Fetch user information for all questions
+    const userRequests = ques.map((que) =>
+      axios.get(`http://localhost:5555/user/${que.user}`)
+    );
+
+    Promise.all(userRequests)
+      .then((responses) => {
+        const userMap = {};
+        responses.forEach((response, index) => {
+          userMap[ques[index]._id] = response.data.name;
+        });
+        setUsers(userMap);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [ques]);
+
+  // Function to increment likes
   const incrementLikes = (id, title, tags, currentLikes) => {
     const updatedLikes = currentLikes + 1;
     const object = {
@@ -31,6 +53,7 @@ export default function Home() {
       tags: tags,
       likes: updatedLikes
     };
+
     axios.put(`http://localhost:5555/ques/${id}`, object)
       .then((response) => {
         setQues((prevQues) =>
@@ -43,27 +66,18 @@ export default function Home() {
         console.log(error);
       });
   }
-  const getUserName = (userId) => {
-    axios
-      .get(`http://localhost:5555/user/${userId}`)
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return users.name;
-  }
+
+  // Function to format date
   const calcDate = (created_on) => {
     const parsedDateTime = new Date(created_on);
     const formattedProvidedDateTime = parsedDateTime.toLocaleString();
     return formattedProvidedDateTime;
   }
+
   return (
     <div className={styles.main}>
       {/* Filter (left div) */}
       <div className={styles.filter}>
-
         <Sidebar />
       </div>
 
@@ -74,7 +88,7 @@ export default function Home() {
           <button>Ask Question</button>
         </div>
         <div className={styles.filters}>
-
+          {/* Add filters as needed */}
         </div>
         {loading ? (
           <p style={{ textAlign: 'center' }}>Loading...</p>
@@ -98,7 +112,9 @@ export default function Home() {
                 </div>
                 <div className={styles.questionBody}>
                   <div className={styles.questionBodyDescription}>
-                    <Link className={styles.questionLink} to={`/question/${que._id}`}><p className={styles.mainQuestion}>{que.title}</p></Link>
+                    <Link className={styles.questionLink} to={`/question/${que._id}`}>
+                      <p className={styles.mainQuestion}>{que.title}</p>
+                    </Link>
                     <p className={styles.questionDesc}>{que.body}</p>
                     <div className={styles.tags}>
                       {que.tags.map((tag, index) => (
@@ -114,11 +130,11 @@ export default function Home() {
                       <div className={styles.timeStamp}>
                         <p>{calcDate(que.created_on)}</p>
                       </div>
-                      <Link to="Profile">
-                      <div className={styles.userProfile}>
-                        <img src={AccountLogo} alt="accountIcon" />
-                        <p className={styles.userName}>{getUserName(que.user)}</p>
-                      </div>
+                      <Link className={styles.linkProfile} to="Profile">
+                        <div className={styles.userProfile}>
+                          <img src={AccountLogo} alt="accountIcon" />
+                          <p className={styles.userName}>{users[que._id]}</p>
+                        </div>
                       </Link>
                     </div>
                   </div>

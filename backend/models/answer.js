@@ -1,12 +1,15 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const answerSchema = new mongoose.Schema(
     {
-        question_id: {
+        question: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "questions",
         },
-        answer: String,
+        answer: {
+            type: String,
+            required: true
+        },
         created_at: {
             type: Date,
             default: Date.now(),
@@ -26,4 +29,4 @@ const answerSchema = new mongoose.Schema(
     },
 );
 
-module.exports = mongoose.model("answers", answerSchema);
+export const Answer = mongoose.model('answers', answerSchema);
