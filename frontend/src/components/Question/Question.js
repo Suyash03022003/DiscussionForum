@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AccountLogo from '../../assets/account.png';
 import LikeOption from '../../assets/like.png';
+import ReactQuill from 'react-quill';
+import "react-quill/dist/quill.snow.css";//quill's css
+
 
 const Question = () => {
     const { id } = useParams();
@@ -11,6 +14,7 @@ const Question = () => {
     const [users, setUsers] = useState({});
     const [views, setViews] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [answer, setAnswer] = useState("")
 
     useEffect(() => {
         setLoading(true);
@@ -45,6 +49,10 @@ const Question = () => {
                 console.log(error);
             });
     }, [ques]);
+
+    const handleQuill = (value) => {
+        setAnswer(value)
+    }
 
     useEffect(() => {
         if (ques.user) {
@@ -81,7 +89,7 @@ const Question = () => {
                 console.log(error);
             });
     }
-    
+
     return (
         <div className={styles.main}>
             {loading ? (
@@ -112,6 +120,16 @@ const Question = () => {
                         <div className={styles.answer}></div>
                     </div>
                     <div className={styles.postAnswers}></div>
+            <div className={styles.answer}>
+                <h3 style={{ fontSize: "22px", margin: "10px 0", fontWeight: "400" }}>Your Answer</h3>
+                <ReactQuill
+                    value={answer}
+                    onChange={handleQuill}
+                    className="react-quill"
+                    theme="snow"
+                    style={{ height: "200px" }}
+                />
+            </div>
                 </div>
             )}
         </div>

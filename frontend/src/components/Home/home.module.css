@@ -1,8 +1,8 @@
 .main {
     width: 100%;
-    margin: 30px auto;
+    /* margin: 30px auto; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .centerDiv {

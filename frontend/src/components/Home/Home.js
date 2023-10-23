@@ -4,6 +4,8 @@ import AccountLogo from '../../assets/account.png';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LikeOption from '../../assets/like.png'
+import Sidebar from '../Sidebar.js';
+
 
 export default function Home() {
   const [ques, setQues] = useState([]);
@@ -59,12 +61,19 @@ export default function Home() {
   }
   return (
     <div className={styles.main}>
+      {/* Filter (left div) */}
+      <div className={styles.filter}>
+        <Sidebar />
+      </div>
+
+      {/* Questions (right div) */}
       <div className={styles.centerDiv}>
         <div className={styles.info}>
           <h4>All Questions</h4>
           <button>Ask Question</button>
         </div>
         <div className={styles.filters}>
+
         </div>
         {loading ? (
           <p style={{ textAlign: 'center' }}>Loading...</p>
@@ -104,10 +113,12 @@ export default function Home() {
                       <div className={styles.timeStamp}>
                         <p>{calcDate(que.created_on)}</p>
                       </div>
+                      <Link to="Profile">
                       <div className={styles.userProfile}>
                         <img src={AccountLogo} alt="accountIcon" />
                         <p className={styles.userName}>{getUserName(que.user)}</p>
                       </div>
+                      </Link>
                     </div>
                   </div>
                 </div>

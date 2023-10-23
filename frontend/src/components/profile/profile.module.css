@@ -1,0 +1,29 @@
+/* CSS for UserProfile component */
+.profilecontainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 10px 18px rgba(0, 0, 0, 0.1);
+    margin-top: 1%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 15%;
+    justify-content: space-around;
+  }
+
+  .profileheading{
+    margin-top: 1%;
+    text-align: center;
+  }
+  
+  .profileinfo h1 {
+    font-size: 34px;
+    margin: 0;
+  }
+  
+  .profileinfo p {
+    font-size: 16px;
+    color: #555;
+  }
+  
