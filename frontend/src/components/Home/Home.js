@@ -63,6 +63,7 @@ export default function Home() {
     <div className={styles.main}>
       {/* Filter (left div) */}
       <div className={styles.filter}>
+
         <Sidebar />
       </div>
 
