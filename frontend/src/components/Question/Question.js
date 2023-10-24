@@ -128,7 +128,7 @@ const Question = () => {
             likes: updatedLikes
         };
 
-        axios.put(`http://localhost:5555/answer/${id}`, object)
+        axios.put(`http://localhost:5555/ques/${id}`, object)
             .then((response) => {
                 setQues({ ...ques, likes: updatedLikes });
             })
@@ -193,6 +193,11 @@ const Question = () => {
         axios.post('http://localhost:5555/answer', answerData)
             .then((response) => {
                 console.log('Answer posted:', response.data);
+
+                const newAnswers = [...answers];
+                newAnswers.push(response.data);
+
+                setAnswers(newAnswers);
             })
             .catch((error) => {
                 console.error('Error posting answer:', error);
@@ -212,7 +217,7 @@ const Question = () => {
                 <div className={styles.centerDiv}>
                     <div className={styles.info}>
                         <h4>{ques.title}</h4>
-                        <button>Ask Question</button>
+                        <Link to={`/addquestion/${ques.user}`}><button>Ask Question</button></Link>
                     </div>
                     <div className={styles.quesInfo}>
                         {calcDate(ques.created_on)}{' '}
@@ -221,7 +226,10 @@ const Question = () => {
                     </div>
                     <div className={styles.questionUploader}>
                         <div className={styles.options}>
-                            <div className={styles.quesBody}><p>{ques.body}</p></div>
+                            <div className={styles.quesBody}>
+                                <p className={styles.questionDesc} dangerouslySetInnerHTML={{ __html: ques.body }}>
+                                </p>
+                            </div>
                             <img src={LikeOption} alt="likeIcon" onClick={incrementLikes} />
                         </div>
                         <div className={styles.userDetails}>
@@ -237,33 +245,35 @@ const Question = () => {
                         </div>
                     </div>
                     <div className={styles.answers}>
-                        <h3 style={{ fontSize: "22px", fontWeight: "400" }} className={styles.headAnswer}>{answers.length} Answer(s):</h3>
-                        {answers.map((answer) => (
-                            <div key={answer._id} className={styles.individualAnswers}>
-                                <div className={styles.options}>
-                                    <div className={styles.optionsMenuVotes}>
-                                        <img src={UpArrow} alt="upvote icon" onClick={() => incrementVotes(answer._id, answer.question, answer.answer, answer.user, answer.upvotes)} />
-                                        <p>{answer.upvotes - answer.downvotes}</p>
-                                        <img src={DownArrow} alt="downvote icon" onClick={() => decrementVotes(answer._id, answer.question, answer.answer, answer.user, answer.downvotes)} />
+                        <h3 style={{ fontSize: "22px", fontWeight: "400" }} className={styles.headAnswer}>{answers.filter(answer => answer.question === ques._id).length} Answer(s):</h3>
+                        {answers
+                            .filter(answer => answer.question === ques._id)
+                            .map((answer) => (
+                                <div key={answer._id} className={styles.individualAnswers}>
+                                    <div className={styles.options}>
+                                        <div className={styles.optionsMenuVotes}>
+                                            <img src={UpArrow} alt="upvote icon" onClick={() => incrementVotes(answer._id, answer.question, answer.answer, answer.user, answer.upvotes)} />
+                                            <p>{answer.upvotes - answer.downvotes}</p>
+                                            <img src={DownArrow} alt="downvote icon" onClick={() => decrementVotes(answer._id, answer.question, answer.answer, answer.user, answer.downvotes)} />
 
-                                    </div>
-                                </div>
-                                <div className={styles.questionUploader}>
-                                    <div dangerouslySetInnerHTML={{ __html: answer.answer }} />
-                                    <div className={styles.userDetails}>
-                                        <div className={styles.timeStamp}>
-                                            <p>Asked {calcDate(answer.created_at)}</p>
                                         </div>
-                                        <Link className={styles.linkProfile} to="/profile">
-                                            <div className={styles.userProfile}>
-                                                <img src={AccountLogo} alt="accountIcon" />
-                                                <p className={styles.userName}>{userMap[answer.user]}</p>
+                                    </div>
+                                    <div className={styles.questionUploader}>
+                                        <div dangerouslySetInnerHTML={{ __html: answer.answer }} />
+                                        <div className={styles.userDetails}>
+                                            <div className={styles.timeStamp}>
+                                                <p>Asked {calcDate(answer.created_at)}</p>
                                             </div>
-                                        </Link>
+                                            <Link className={styles.linkProfile} to="/profile">
+                                                <div className={styles.userProfile}>
+                                                    <img src={AccountLogo} alt="accountIcon" />
+                                                    <p className={styles.userName}>{userMap[answer.user]}</p>
+                                                </div>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                     <div className={styles.postAnswers}>
                         <h3 style={{ fontSize: "22px", margin: "10px 0", fontWeight: "400" }}>Your Answer</h3>

@@ -112,6 +112,10 @@
     gap: 20px;
 }
 
+.optionsMenuVotes img {
+    opacity: 0.6;
+}
+
 .userDetails {
     width: 100%;
     display: flex;

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LikeOption from '../../assets/like.png'
 import Sidebar from '../Sidebar.js';
+import AddQuestion from '../AddQuestion/AddQuestion'
 
 export default function Home() {
   const [ques, setQues] = useState([]);
@@ -17,7 +18,7 @@ export default function Home() {
     axios
       .get('http://localhost:5555/ques')
       .then((response) => {
-        setQues(response.data);
+        setQues(response.data.reverse());
         setLoading(false);
       })
       .catch((error) => {
@@ -85,7 +86,7 @@ export default function Home() {
       <div className={styles.centerDiv}>
         <div className={styles.info}>
           <h4>All Questions</h4>
-          <button>Ask Question</button>
+          <Link to={`/addquestion/`}><button>Ask Question</button></Link>
         </div>
         <div className={styles.filters}>
           {/* Add filters as needed */}
@@ -115,7 +116,7 @@ export default function Home() {
                     <Link className={styles.questionLink} to={`/question/${que._id}`}>
                       <p className={styles.mainQuestion}>{que.title}</p>
                     </Link>
-                    <p className={styles.questionDesc}>{que.body}</p>
+                    <p className={styles.questionDesc} dangerouslySetInnerHTML={{ __html: que.body }}></p>
                     <div className={styles.tags}>
                       {que.tags.map((tag, index) => (
                         <p key={index} className={styles.tag}>{tag}</p>

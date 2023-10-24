@@ -4,6 +4,7 @@ import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import Profile from "./components/profile/profile";
 import Question from "./components/Question/Question";
+import AddQuestion from './components/AddQuestion/AddQuestion';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/question/:id" element={<Question />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/addquestion/:user" element={<AddQuestion />} />
       </Routes>
     </BrowserRouter>
   );
