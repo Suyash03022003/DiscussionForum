@@ -78,9 +78,9 @@ export default function Home() {
   return (
     <div className={styles.main}>
       {/* Filter (left div) */}
-      <div className={styles.filter}>
+      {/* <div className={styles.filter}>
         <Sidebar />
-      </div>
+      </div> */}
 
       {/* Questions (right div) */}
       <div className={styles.centerDiv}>

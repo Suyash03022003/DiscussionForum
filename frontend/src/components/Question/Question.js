@@ -208,9 +208,9 @@ const Question = () => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.filter}>
+            {/* <div className={styles.filter}>
                 <Sidebar />
-            </div>
+            </div> */}
             {loading ? (
                 <p style={{ textAlign: 'center' }}>Loading...</p>
             ) : (
