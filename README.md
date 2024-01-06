@@ -21,6 +21,3 @@ cd backend -> Enter -> npm i -> Enter -> npm run dev -> Enter
 
 ### Run the below link in URL:
 http://localhost:3000/
-
-1. Register Yourself
-2. Log In
